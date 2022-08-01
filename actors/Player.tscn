@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/DarkElf_Basics.png" type="Texture" id=1]
+[ext_resource path="res://actors/Player.gd" type="Script" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 4.0
+height = 0.0
+
+[node name="Player" type="KinematicBody2D"]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -4.81 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 1 )
+hframes = 9
+vframes = 2
+frame = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -4 )
+scale = Vector2( 0.759999, 0.97483 )
+shape = SubResource( 1 )
