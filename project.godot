@@ -13,6 +13,10 @@ config_version=4
 config/name="Low Rez Game Jam"
 run/main_scene="res://scenes/levels/MainScene.tscn"
 
+[debug]
+
+settings/stdout/print_fps=true
+
 [display]
 
 window/size/width=64
@@ -27,6 +31,7 @@ window/stretch/aspect="keep"
 reso=false
 resolution=false
 display=false
+fps=false
 
 [importer_defaults]
 

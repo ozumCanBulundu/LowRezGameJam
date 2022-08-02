@@ -1,10 +1,10 @@
 extends KinematicBody2D
 
-export var gravityConstant = 150;
+export var gravityConstant = 10;
 var velocity:Vector2 = Vector2.ZERO
 var direction:Vector2 = Vector2.ZERO
-export var speed :int = 30
-export var jumpConstant : int = 3000
+export var speed :int = 45
+export var jumpConstant : int = 130
 
 func _physics_process(delta: float) -> void:
 	gravity()
@@ -13,10 +13,8 @@ func _physics_process(delta: float) -> void:
 	_jump()
 	velocity = move_and_slide(velocity, Vector2.UP)
 
-	
-
 func gravity():
-	velocity.y += gravityConstant * get_physics_process_delta_time()
+	velocity.y += gravityConstant
 	return velocity.y
 
 func get_move_vector():
@@ -26,6 +24,6 @@ func get_move_vector():
 
 func _jump():
 	if(direction.y == -1.0):
-		velocity.y = jumpConstant * direction.y * get_physics_process_delta_time()
+		velocity.y = jumpConstant * direction.y
 
 	
