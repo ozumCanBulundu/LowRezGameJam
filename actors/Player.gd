@@ -1,2 +1,2 @@
-extends Actor
+extends LivingProperties
 
