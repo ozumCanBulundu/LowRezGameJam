@@ -36,10 +36,7 @@ scale = Vector2( 0.1, 0.1 )
 tile_set = SubResource( 1 )
 collision_layer = 4
 format = 1
-tile_data = PoolIntArray( 131081, 0, 0, 196615, 0, 0, 262144, 1, 0, 262149, 0, 0, 327680, 1, 0, 327686, 1, 0, 327688, 1, 0, 393216, 1, 0, 393218, 1, 0, 393220, 1, 0, 393222, 1, 0, 393224, 1, 0, 393225, 1, 0, 393226, 1, 0, 393228, 1, 0, 393230, 1, 0, 393232, 1, 0 )
+tile_data = PoolIntArray( 131081, 0, 0, 196615, 0, 0, 262149, 0, 0, 393215, 1, 0, 327682, 1, 0 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 6, 10 )
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 32, 32 )
+position = Vector2( 8, 16 )
