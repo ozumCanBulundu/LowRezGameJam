@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tileset.png-314ddce5532f85958d5092d5dc99cd23.stex"
+path="res://.import/waterTiles.png-86e82765b486481aa1eb0dd9b39df4c2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Tileset/tileset.png"
-dest_files=[ "res://.import/tileset.png-314ddce5532f85958d5092d5dc99cd23.stex" ]
+source_file="res://assets/Tileset/waterTiles.png"
+dest_files=[ "res://.import/waterTiles.png-86e82765b486481aa1eb0dd9b39df4c2.stex" ]
 
 [params]
 
