@@ -486,6 +486,8 @@ collision_mask = 1
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
+editor_draw_limits = true
+editor_draw_drag_margin = true
 
 [node name="TileMap" type="TileMap" parent="."]
 mode = 2

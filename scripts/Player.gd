@@ -8,7 +8,7 @@ var is_falling = false
 
 var screen_width:int = 64
 var distance : = 1
-var cameraSpeed: = 0.03
+var cameraSpeed: = 0.3
 var new_camera_position
 var cameraBound = 0
 
@@ -19,13 +19,15 @@ func _physics_process(delta):
 	
 	if input==1:
 		$Sprite.flip_h=false
-		if ($Camera2D.get_camera_position().x - self.position.x < 5):
-			cameraBound = (self.position.x + distance) * delta 
+		if ($Camera2D.get_camera_position().x - self.position.x < 3):
+			cameraBound = (self.position.x + distance) * delta * cameraSpeed
 			$Camera2D.offset_h = cameraBound
 		
 	if input==-1:
 		$Sprite.flip_h=true
-		$Camera2D.offset_h =min(($Camera2D.offset_h - cameraSpeed) , (self.position.x - distance - screen_width/2) * delta) 
+		if ($Camera2D.get_camera_position().x - self.position.x > 3):
+			cameraBound = (self.position.x - distance) * delta * cameraSpeed
+			$Camera2D.offset_h = cameraBound
 		
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y=-jumpConstant
