@@ -1,29 +1,24 @@
 extends KinematicBody2D
 
-export var gravityConstant = 10;
-var velocity:Vector2 = Vector2.ZERO
-var direction:Vector2 = Vector2.ZERO
-export var speed :int = 45
-export var jumpConstant : int = 130
-
-func _physics_process(delta: float) -> void:
-	gravity()
-	get_move_vector()
-	velocity.x = direction.x * speed
-	_jump()
-	velocity = move_and_slide(velocity, Vector2.UP)
-
-func gravity():
-	velocity.y += gravityConstant
-	return velocity.y
-
-func get_move_vector():
-	direction.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
-	direction.y = -1 if Input.is_action_just_pressed("jump") and is_on_floor() else 1
-	return direction
-
-func _jump():
-	if(direction.y == -1.0):
-		velocity.y = jumpConstant * direction.y
-
+export var gravityConstant = 10
+var velocity = Vector2.ZERO
+export var speed = 45
+export var jumpConstant = 130
+var is_falling = false
+func _physics_process(delta):
+	is_falling = velocity.y>0
+	var input = Input.get_axis("move_left","move_right")
+	velocity.x = input*speed
+	if input==1:
+		$Sprite.flip_h=false
+	if input==-1:
+		$Sprite.flip_h=true
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		velocity.y=-jumpConstant
+	if is_falling:
+		velocity.y+=gravityConstant*0.1
+	else:
+		velocity.y+=gravityConstant
+	velocity=move_and_slide(velocity,Vector2.UP)
+	
 	
