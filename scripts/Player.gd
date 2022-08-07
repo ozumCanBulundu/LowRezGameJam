@@ -9,8 +9,8 @@ var is_falling = false
 var screen_width:int = 64
 var distance : = 1
 var cameraSpeed: = 0.3
-var new_camera_position
 var cameraBound = 0
+
 
 func _physics_process(delta):
 	is_falling = velocity.y>0
@@ -19,23 +19,30 @@ func _physics_process(delta):
 	
 	if input==1:
 		$Sprite.flip_h=false
+		#Camera movement
 		if ($Camera2D.get_camera_position().x - self.position.x < 3):
 			cameraBound = (self.position.x + distance) * delta * cameraSpeed
 			$Camera2D.offset_h = cameraBound
 		
 	if input==-1:
 		$Sprite.flip_h=true
+		#Camera movement
 		if ($Camera2D.get_camera_position().x - self.position.x > 3):
 			cameraBound = (self.position.x - distance) * delta * cameraSpeed
 			$Camera2D.offset_h = cameraBound
 		
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if (Input.is_action_just_pressed("jump") and (is_on_floor() || !$CoyoteTimer.is_stopped())):
 		velocity.y=-jumpConstant
+	
 	if is_falling:
-		velocity.y+=gravityConstant*0.1
+		velocity.y+=gravityConstant*0.3
 	else:
 		velocity.y+=gravityConstant
+		
+	var wasOnFloor = is_on_floor()
 	velocity=move_and_slide(velocity,Vector2.UP)
 	
-	
+	#Coyote timer
+	if(wasOnFloor && !is_on_floor()):
+		$CoyoteTimer.start()
 	

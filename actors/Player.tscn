@@ -11,6 +11,10 @@ height = 2.2
 collision_mask = 4
 script = ExtResource( 2 )
 
+[node name="CoyoteTimer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 
