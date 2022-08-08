@@ -11,6 +11,8 @@ var distance : = 1
 var cameraSpeed: = 0.3
 var cameraBound = 0
 
+var canDoubleJump = true
+
 
 func _physics_process(delta):
 	is_falling = velocity.y>0
@@ -33,6 +35,10 @@ func _physics_process(delta):
 		
 	if (Input.is_action_just_pressed("jump") and (is_on_floor() || !$CoyoteTimer.is_stopped())):
 		velocity.y=-jumpConstant
+		canDoubleJump=true
+	if (Input.is_action_just_pressed("jump") and canDoubleJump and !is_on_floor()):
+			velocity.y=-jumpConstant
+			canDoubleJump = false
 	
 	if is_falling:
 		velocity.y+=gravityConstant*0.3
