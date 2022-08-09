@@ -20,19 +20,28 @@ func _physics_process(delta):
 	velocity.x = input*speed
 	
 	if input==1:
-		$Sprite.flip_h=false
+		$AnimatedSprite.flip_h=false
+		$AnimatedSprite.play("run")
 		#Camera movement
 		if ($Camera2D.get_camera_position().x - self.position.x < 3):
 			cameraBound = (self.position.x + distance) * delta * cameraSpeed
 			$Camera2D.offset_h = cameraBound
 		
 	if input==-1:
-		$Sprite.flip_h=true
+		$AnimatedSprite.flip_h=true
+		$AnimatedSprite.play("run")
 		#Camera movement
 		if ($Camera2D.get_camera_position().x - self.position.x > 3):
 			cameraBound = (self.position.x - distance) * delta * cameraSpeed
 			$Camera2D.offset_h = cameraBound
-		
+	
+	if (input == 0):
+		$AnimatedSprite.play("idle")
+	
+	if (is_on_wall()):
+		if(Input.is_action_pressed("jump")):
+			velocity.y =- jumpConstant * 0.15
+	
 	if (Input.is_action_just_pressed("jump") and (is_on_floor() || !$CoyoteTimer.is_stopped())):
 		velocity.y=-jumpConstant
 		canDoubleJump=true
